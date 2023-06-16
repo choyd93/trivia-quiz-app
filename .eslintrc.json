@@ -25,7 +25,16 @@
     ],
     "rules": {
         "react/react-in-jsx-scope": "off",
+        "spaced-comment": "off",
         "@typescript-eslint/explicit-function-return-type": "off",
+        "arrow-body-style": ["error", "always"],
+        "react/function-component-definition":[
+            2,
+            { "namedComponents": [
+                "arrow-function",
+                "function-declaration"
+            ] }
+        ],
         "react/jsx-filename-extension": [
             1,
             {

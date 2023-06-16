@@ -1,13 +1,16 @@
-function App() {
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from '@pages/Home';
+import Quiz from '@pages/Quiz';
+
+const App = () => {
     return (
-        <div className="App">
-            <header className="App-header">
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-            </header>
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/quiz/*" element={<Quiz />} />
+            </Routes>
+        </BrowserRouter>
     );
-}
+};
 
 export default App;
