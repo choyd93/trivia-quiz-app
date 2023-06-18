@@ -29,6 +29,7 @@
         "@typescript-eslint/explicit-function-return-type": "off",
         "arrow-body-style": ["error", "as-needed"],
         "import/prefer-default-export": "off",
+        "no-nested-ternary": "off",
         "@typescript-eslint/naming-convention": [
             "error",
             {
