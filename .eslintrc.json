@@ -27,7 +27,15 @@
         "react/react-in-jsx-scope": "off",
         "spaced-comment": "off",
         "@typescript-eslint/explicit-function-return-type": "off",
-        "arrow-body-style": ["error", "always"],
+        "arrow-body-style": ["error", "as-needed"],
+        "import/prefer-default-export": "off",
+        "@typescript-eslint/naming-convention": [
+            "error",
+            {
+                "selector": "variable",
+                "format": ["camelCase", "snake_case", "UPPER_CASE", "PascalCase"]
+            }
+        ],
         "react/function-component-definition":[
             2,
             { "namedComponents": [
