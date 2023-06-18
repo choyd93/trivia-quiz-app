@@ -1,12 +1,18 @@
-import React from 'react';
 import Header from '@components/Header';
-import ContentWrap from '@pages/Quiz/styles';
+import Detail from '@pages/Quiz/detail';
+import UseQuizQuery from '@hooks/useQuizQuery';
 
 const Quiz = () => {
+    const { data, isLoading } = UseQuizQuery();
+
+    if (isLoading) {
+        return <>로딩중</>;
+    }
+
     return (
         <>
             <Header />
-            <ContentWrap>퀴즈 상세 페이지</ContentWrap>
+            {data && <Detail data={data.results[1]} />}
         </>
     );
 };
