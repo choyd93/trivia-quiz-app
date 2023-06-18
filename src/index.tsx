@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import GlobalStyle from './assets/styles/globals';
@@ -8,10 +9,15 @@ import GlobalStyle from './assets/styles/globals';
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement,
 );
+
+const queryClient = new QueryClient();
+
 root.render(
     <React.StrictMode>
-        <GlobalStyle />
-        <App />
+        <QueryClientProvider client={queryClient}>
+            <GlobalStyle />
+            <App />
+        </QueryClientProvider>
     </React.StrictMode>,
 );
 
