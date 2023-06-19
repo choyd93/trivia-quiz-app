@@ -2,8 +2,13 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import Header from '@components/Header';
+import Loading from '@components/Spinner';
+
 import UseQuizQuery from '@hooks/useQuizQuery';
 import UseTimer from '@hooks/useTimer';
+
+import QuizDetailContainer from '@pages/Quiz/QuizDetail';
+import QuizDetailResult from '@pages/Quiz/QuizResult';
 
 import {
     ButtonWrap,
@@ -12,9 +17,6 @@ import {
     QuizContentCenterWrap,
     QuizContentsWrap,
 } from '@pages/Quiz/styles';
-
-import QuizDetailContainer from '@pages/Quiz/QuizDetail';
-import QuizDetailResult from '@pages/Quiz/QuizResult';
 
 const Quiz = () => {
     const { state } = useLocation();
@@ -32,7 +34,7 @@ const Quiz = () => {
         <>
             <Header />
             {isLoading ? (
-                <>로딩중</>
+                <Loading />
             ) : data?.results.length === 0 ? (
                 <QuizContentsWrap>
                     <ContentWrap>
@@ -79,5 +81,4 @@ const Quiz = () => {
         </>
     );
 };
-
 export default Quiz;
