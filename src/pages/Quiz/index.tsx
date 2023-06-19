@@ -7,18 +7,23 @@ import UseTimer from '@hooks/useTimer';
 import { ContentWrap } from '@pages/Quiz/styles';
 import QuizDetailContainer from '@pages/Quiz/QuizDetail';
 import QuizDetailResult from '@pages/Quiz/QuizResult';
+import { useLocation } from 'react-router-dom';
 
 const Quiz = () => {
-    const { data, isLoading } = UseQuizQuery();
+    const { state } = useLocation();
+    const { nickName, amount } = state.mySelectQuizOption;
+
+    const { data, isLoading } = UseQuizQuery(state.mySelectQuizOption);
+    const { formattedTime, setIsRunning } = UseTimer();
+
     const [quizIndex, setQuizIndex] = useState(0);
     const [correctPoint, setCorrectPoint] = useState(0);
-    const { formattedTime, setIsRunning } = UseTimer();
 
     if (isLoading) {
         return <>로딩중</>;
     }
 
-    const isQuizChpter = quizIndex >= 0 && quizIndex < 10;
+    const isQuizChpter = quizIndex >= 0 && quizIndex <= Number(amount) - 1;
 
     return (
         <>
@@ -31,6 +36,7 @@ const Quiz = () => {
                         setQuizIndex={setQuizIndex}
                         setCorrectPoint={setCorrectPoint}
                         correctPoint={correctPoint}
+                        amount={amount}
                     />
                 )}
                 {!isQuizChpter && (
@@ -38,6 +44,8 @@ const Quiz = () => {
                         correctPoint={correctPoint}
                         ResultTime={formattedTime}
                         setIsRunning={setIsRunning}
+                        myNickName={nickName}
+                        amount={amount}
                     />
                 )}
             </ContentWrap>

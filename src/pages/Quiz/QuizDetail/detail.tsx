@@ -16,6 +16,7 @@ interface DetailProps {
     correctAnswerType: 'true' | 'false' | null;
     setCorrectAnswerIndex: React.Dispatch<React.SetStateAction<number>>;
     correctPoint: number;
+    amount: string;
 }
 
 const QuizDetail = ({
@@ -26,8 +27,10 @@ const QuizDetail = ({
     correctAnswerType,
     setCorrectAnswerIndex,
     correctPoint,
+    amount,
 }: DetailProps) => {
     const { correct_answer, incorrect_answers, category, question } = data;
+    const currentQuizIndex = quizIndex + 1;
     const [quizDetail, setQuizDetail] = useState<string[]>([]);
 
     /**
@@ -83,10 +86,12 @@ const QuizDetail = ({
         <>
             <QuizCategory>{decodeURIComponent(category)}</QuizCategory>
             <QuizPointWrap>
-                <div>Question: {quizIndex + 1} / 10</div>
+                <div>
+                    Question: {currentQuizIndex} / {amount}
+                </div>
                 <div>Point : {correctPoint}</div>
             </QuizPointWrap>
-            <QuizHeading>Question 1</QuizHeading>
+            <QuizHeading>Question {currentQuizIndex}</QuizHeading>
             <QuizContent>{decodeURIComponent(question)}</QuizContent>
             {quizDetail.map((item, index) => (
                 <QuizCard
