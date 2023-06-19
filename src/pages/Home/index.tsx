@@ -11,7 +11,7 @@ import { categories } from '@assets/data';
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
-    const appName = '<Quiz-App />';
+    const appName = 'Simple Quiz';
     const navigate = useNavigate();
 
     const [mySelectQuizOption, setMySelectQuizOption] = useState({
@@ -33,9 +33,13 @@ const Home = () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        navigate('/quiz', {
-            state: { mySelectQuizOption },
-        });
+        if (mySelectQuizOption.nickName === '') {
+            alert('닉네임 입력하세요');
+        } else {
+            navigate('/quiz', {
+                state: { mySelectQuizOption },
+            });
+        }
     };
 
     return (

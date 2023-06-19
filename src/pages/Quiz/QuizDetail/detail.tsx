@@ -5,6 +5,7 @@ import {
     QuizContent,
     QuizHeading,
     QuizPointWrap,
+    QuizSubContents,
 } from '@pages/Quiz/QuizDetail/styles';
 import { QuizResponseResult } from '@api/types';
 
@@ -17,6 +18,7 @@ interface DetailProps {
     setCorrectAnswerIndex: React.Dispatch<React.SetStateAction<number>>;
     correctPoint: number;
     amount: string;
+    difficulty: string;
 }
 
 const QuizDetail = ({
@@ -28,6 +30,7 @@ const QuizDetail = ({
     setCorrectAnswerIndex,
     correctPoint,
     amount,
+    difficulty,
 }: DetailProps) => {
     const { correct_answer, incorrect_answers, category, question } = data;
     const currentQuizIndex = quizIndex + 1;
@@ -84,12 +87,15 @@ const QuizDetail = ({
 
     return (
         <>
-            <QuizCategory>{decodeURIComponent(category)}</QuizCategory>
-            <QuizPointWrap>
-                <div>
-                    Question: {currentQuizIndex} / {amount}
-                </div>
+            <QuizCategory>
+                <div>{decodeURIComponent(category)}</div>
                 <div>Point : {correctPoint}</div>
+            </QuizCategory>
+            <QuizPointWrap>
+                <QuizSubContents>
+                    Question: {currentQuizIndex} / {amount}
+                </QuizSubContents>
+                <QuizSubContents>{difficulty}</QuizSubContents>
             </QuizPointWrap>
             <QuizHeading>Question {currentQuizIndex}</QuizHeading>
             <QuizContent>{decodeURIComponent(question)}</QuizContent>

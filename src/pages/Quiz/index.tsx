@@ -1,27 +1,30 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import Header from '@components/Header';
 import UseQuizQuery from '@hooks/useQuizQuery';
 import UseTimer from '@hooks/useTimer';
 
-import { ContentWrap, QuizContentsWrap } from '@pages/Quiz/styles';
+import {
+    ButtonWrap,
+    ContentWrap,
+    HomeButton,
+    QuizContentCenterWrap,
+    QuizContentsWrap,
+} from '@pages/Quiz/styles';
+
 import QuizDetailContainer from '@pages/Quiz/QuizDetail';
 import QuizDetailResult from '@pages/Quiz/QuizResult';
-import { useLocation } from 'react-router-dom';
 
 const Quiz = () => {
     const { state } = useLocation();
-    const { nickName, amount } = state.mySelectQuizOption;
+    const { nickName, amount, difficulty } = state.mySelectQuizOption;
 
     const { data, isLoading } = UseQuizQuery(state.mySelectQuizOption);
     const { formattedTime, setIsRunning } = UseTimer();
 
     const [quizIndex, setQuizIndex] = useState(0);
     const [correctPoint, setCorrectPoint] = useState(0);
-
-    if (isLoading) {
-        return <>로딩중</>;
-    }
 
     const isQuizChpter = quizIndex >= 0 && quizIndex <= Number(amount) - 1;
 
@@ -30,6 +33,23 @@ const Quiz = () => {
             <Header />
             {isLoading ? (
                 <>로딩중</>
+            ) : data?.results.length === 0 ? (
+                <QuizContentsWrap>
+                    <ContentWrap>
+                        <QuizContentCenterWrap>
+                            선택하신 문제 타입과 카테고리에 맞는 퀴즈가
+                            없습니다.
+                        </QuizContentCenterWrap>
+                        <QuizContentCenterWrap>
+                            (ture / false 타입을 선택하셨을 경우)
+                        </QuizContentCenterWrap>
+                        <ButtonWrap>
+                            <a href="/">
+                                <HomeButton>홈으로 돌아가기</HomeButton>
+                            </a>
+                        </ButtonWrap>
+                    </ContentWrap>
+                </QuizContentsWrap>
             ) : (
                 <QuizContentsWrap>
                     <ContentWrap>
@@ -41,6 +61,7 @@ const Quiz = () => {
                                 setCorrectPoint={setCorrectPoint}
                                 correctPoint={correctPoint}
                                 amount={amount}
+                                difficulty={difficulty}
                             />
                         )}
                         {!isQuizChpter && (

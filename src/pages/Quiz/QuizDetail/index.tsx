@@ -14,6 +14,7 @@ interface QuizDetailContainerProps {
     correctPoint: number;
     setCorrectPoint: React.Dispatch<React.SetStateAction<number>>;
     amount: string;
+    difficulty: string;
 }
 const QuizDetailContainer = ({
     data,
@@ -22,6 +23,7 @@ const QuizDetailContainer = ({
     correctPoint,
     setCorrectPoint,
     amount,
+    difficulty,
 }: QuizDetailContainerProps) => {
     const [selectedAnswer, setSelectedAnswer] = useState(-1);
     const [correctAnswerIndex, setCorrectAnswerIndex] = useState(-1);
@@ -68,6 +70,7 @@ const QuizDetailContainer = ({
                     setCorrectAnswerIndex={setCorrectAnswerIndex}
                     correctPoint={correctPoint}
                     amount={amount}
+                    difficulty={difficulty}
                 />
                 {selectedAnswer !== -1 && (
                     <NextQuizButtonWrap>

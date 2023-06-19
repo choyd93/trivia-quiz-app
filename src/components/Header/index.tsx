@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import IdeaIcon from '@assets/icons/icons';
 import {
     GitPageButton,
@@ -12,12 +11,12 @@ const Header = () => {
 
     return (
         <HeaderWrap>
-            <Link to="/">
+            <a href="/">
                 <IconWrap>
                     <IdeaIcon />
                 </IconWrap>
-                <HomeTitle>Trivia Quiz</HomeTitle>
-            </Link>
+                <HomeTitle>Simple Quiz</HomeTitle>
+            </a>
             <GitPageButton
                 href="https://github.com/choyd93/trivia-quiz-app"
                 target="_blank"
