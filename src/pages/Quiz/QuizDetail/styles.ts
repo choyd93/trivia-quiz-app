@@ -33,6 +33,7 @@ export const QuizCard = styled.button`
 export const QuizCategory = styled.div`
     font-size: 1.4rem;
     margin-bottom: 0.5rem;
+    font-weight: bold;
 `;
 
 export const QuizHeading = styled.h1`

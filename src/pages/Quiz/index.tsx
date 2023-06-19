@@ -4,7 +4,7 @@ import Header from '@components/Header';
 import UseQuizQuery from '@hooks/useQuizQuery';
 import UseTimer from '@hooks/useTimer';
 
-import { ContentWrap } from '@pages/Quiz/styles';
+import { ContentWrap, QuizContentsWrap } from '@pages/Quiz/styles';
 import QuizDetailContainer from '@pages/Quiz/QuizDetail';
 import QuizDetailResult from '@pages/Quiz/QuizResult';
 import { useLocation } from 'react-router-dom';
@@ -28,27 +28,33 @@ const Quiz = () => {
     return (
         <>
             <Header />
-            <ContentWrap>
-                {isQuizChpter && data && (
-                    <QuizDetailContainer
-                        data={data}
-                        quizIndex={quizIndex}
-                        setQuizIndex={setQuizIndex}
-                        setCorrectPoint={setCorrectPoint}
-                        correctPoint={correctPoint}
-                        amount={amount}
-                    />
-                )}
-                {!isQuizChpter && (
-                    <QuizDetailResult
-                        correctPoint={correctPoint}
-                        ResultTime={formattedTime}
-                        setIsRunning={setIsRunning}
-                        myNickName={nickName}
-                        amount={amount}
-                    />
-                )}
-            </ContentWrap>
+            {isLoading ? (
+                <>로딩중</>
+            ) : (
+                <QuizContentsWrap>
+                    <ContentWrap>
+                        {isQuizChpter && data && (
+                            <QuizDetailContainer
+                                data={data}
+                                quizIndex={quizIndex}
+                                setQuizIndex={setQuizIndex}
+                                setCorrectPoint={setCorrectPoint}
+                                correctPoint={correctPoint}
+                                amount={amount}
+                            />
+                        )}
+                        {!isQuizChpter && (
+                            <QuizDetailResult
+                                correctPoint={correctPoint}
+                                ResultTime={formattedTime}
+                                setIsRunning={setIsRunning}
+                                myNickName={nickName}
+                                amount={amount}
+                            />
+                        )}
+                    </ContentWrap>
+                </QuizContentsWrap>
+            )}
         </>
     );
 };

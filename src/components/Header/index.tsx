@@ -4,15 +4,18 @@ import {
     GitPageButton,
     HeaderWrap,
     HomeTitle,
+    IconWrap,
 } from '@components/Header/styles';
 
 const Header = () => {
-    const gitPageTitle = '<> Github';
+    const gitPageTitle = '<> GITHUB';
 
     return (
         <HeaderWrap>
             <Link to="/">
-                <IdeaIcon />
+                <IconWrap>
+                    <IdeaIcon />
+                </IconWrap>
                 <HomeTitle>Trivia Quiz</HomeTitle>
             </Link>
             <GitPageButton

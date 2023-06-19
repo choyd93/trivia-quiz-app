@@ -8,3 +8,8 @@ export const ContentWrap = styled.section`
     position: relative;
     height: 1200px;
 `;
+
+export const QuizContentsWrap = styled.section`
+    background-color: #f6f7fb;
+    width: 100%;
+`;

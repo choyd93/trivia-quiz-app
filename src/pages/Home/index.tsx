@@ -3,6 +3,7 @@ import {
     ContentInput,
     EntranceButton,
     HomeWrap,
+    QuizAppName,
     QuizInputLabel,
     QuizSelectBox,
 } from '@pages/Home/styles';
@@ -40,7 +41,7 @@ const Home = () => {
     return (
         <form onSubmit={handleSubmit}>
             <HomeWrap>
-                <h1>{appName}</h1>
+                <QuizAppName>{appName}</QuizAppName>
             </HomeWrap>
             <HomeWrap>
                 <QuizInputLabel>닉네임:</QuizInputLabel>

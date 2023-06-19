@@ -67,3 +67,7 @@ export const QuizSelectBox = styled.select`
     padding: 0 15px;
     margin-bottom: 1rem;
 `;
+
+export const QuizAppName = styled.h1`
+    text-align: center;
+`;

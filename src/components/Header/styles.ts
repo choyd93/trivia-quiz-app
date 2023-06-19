@@ -13,10 +13,15 @@ export const HeaderWrap = styled.header`
 
 export const HomeTitle = styled.div`
     display: inline-block;
+    font-weight: bold;
+    color: #2e3856;
+    font-size: 1.5rem;
+    padding-left: 0.3rem;
 `;
 
 export const GitPageButton = styled.a`
     text-decoration: none;
+    font-size: 0.9rem;
     color: #fff;
     background-color: #26a69a;
     text-align: center;
@@ -28,5 +33,10 @@ export const GitPageButton = styled.a`
     border-radius: 2px;
     display: inline-block;
     height: 36px;
-    line-height: 36px;
+    line-height: 39px;
+`;
+
+export const IconWrap = styled.div`
+    display: inline-block;
+    padding-top: 10px;
 `;
