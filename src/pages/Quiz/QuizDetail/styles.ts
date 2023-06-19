@@ -31,6 +31,8 @@ export const QuizCard = styled.button`
 `;
 
 export const QuizCategory = styled.div`
+    display: flex;
+    justify-content: space-between;
     font-size: 1.4rem;
     margin-bottom: 0.5rem;
     font-weight: bold;
@@ -45,6 +47,11 @@ export const QuizPointWrap = styled.div`
     display: flex;
     font-size: 1.4rem;
     justify-content: space-between;
+`;
+
+export const QuizSubContents = styled.div`
+    font-size: 1.2rem;
+    color: #9e9e9e;
 `;
 
 export const QuizContent = styled.div`

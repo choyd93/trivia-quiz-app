@@ -1,4 +1,4 @@
-# trivia-quiz-app
+# simple-quiz-app
 심플 퀴즈 앱
 
 ## 1. 프로젝트 소개
@@ -6,6 +6,7 @@ trivia API를 활용한 간단한 퀴즈앱 입니다.
 - 퀴즈 수, 카테고리, 난이도, 문제타입 선택 가능
 - 4개 보기 중 항목 선택 후 답안이 맞았는지 확인 가능 
 - 퀴즈풀기 완료 후 경과 시간 및 정답 & 오답 확인 가능 
+- 정 오답에 대한 비율 차트로 확인 가능
 - AWS Amplify를 통해 정적 사이트 배포
 
 🏠 <a href=https://main.d3dku69za6fcxq.amplifyapp.com>웹 페이지</a>
@@ -18,6 +19,7 @@ trivia API를 활용한 간단한 퀴즈앱 입니다.
 - `Styled-components` : css-in-js을 통해 컴포넌트 스타일을 관리하기 위해 사용
 - `ESLint` : 코드의 컨벤션 검사를 위해 사용
 - `Pretiier` : 코드의 컨벤션 유지를 위해 사용
+- `nivo` : D3 기반의 차트 라이브러리
 - `AWS Amplify` : 정적 사이트 배포
 
 
