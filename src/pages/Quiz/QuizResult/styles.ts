@@ -21,6 +21,7 @@ export const QuizResultCard = styled.div`
 
 export const QuizResultText = styled.div`
     font-size: 1.5rem;
+    margin-bottom: 0.5rem;
 `;
 
 export const QuizResultContentWrap = styled.div`

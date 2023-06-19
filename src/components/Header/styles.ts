@@ -1,14 +1,20 @@
 import styled from 'styled-components';
 
-export const HeaderWrap = styled.header`
-    background-color: var(--gray-100-twilight-900);
+export const HeaderWrap = styled.header<{ isLoading: boolean }>`
+    background-color: white;
     border-bottom: 0.0625rem solid var(--gray-300-gray-800);
     color: var(--gray-800-gray-100);
     display: flex;
     justify-content: space-between;
     height: 4rem;
-    padding: 0 1rem;
     border-bottom: 0.0625rem solid #eeeff4;
+    position: ${props => (props.isLoading ? 'initial' : 'fixed')};
+    z-index: 100;
+    width: 100%;
+`;
+
+export const HomeALink = styled.a`
+    padding-left: 1rem;
 `;
 
 export const HomeTitle = styled.div`
@@ -28,7 +34,7 @@ export const GitPageButton = styled.a`
     letter-spacing: 0.5px;
     transition: 0.2s ease-out;
     cursor: pointer;
-    margin: 23px 0 0 20px;
+    margin: 23px 25px 0 20px;
     width: 130px;
     border-radius: 2px;
     display: inline-block;

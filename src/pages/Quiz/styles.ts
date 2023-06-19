@@ -11,7 +11,7 @@ export const ContentWrap = styled.section`
 
 export const QuizContentsWrap = styled.section`
     background-color: #f6f7fb;
-
+    padding-top: 100px;
     width: 100%;
 `;
 

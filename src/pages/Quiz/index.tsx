@@ -32,7 +32,7 @@ const Quiz = () => {
 
     return (
         <>
-            <Header />
+            <Header isLoading={isLoading} />
             {isLoading ? (
                 <Loading />
             ) : data?.results.length === 0 ? (
