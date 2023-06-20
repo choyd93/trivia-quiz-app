@@ -6,6 +6,7 @@ import { ButtonWrap, HomeButton } from '@pages/Quiz/styles';
 import { QuizResultWrap } from '@pages/Quiz/QuizResult/styles';
 import QuizResultCard from '@components/Card/quizResultCard';
 import AllTimeResultCard from '@components/Card/allTimeResultCard';
+import { handleSortAllUserScore } from '@utils/utils';
 
 interface QuizDetailResultProps {
     correctPoint: number;
@@ -32,7 +33,9 @@ const QuizDetailResult = ({
         const arr = { nickName, amount, correctPoint, totalTime };
         const copyOldScore = [...allTimeScore];
         copyOldScore.push(arr);
-        updateAllTimeScore(copyOldScore);
+        const sortedAlluserScore = handleSortAllUserScore(copyOldScore);
+
+        updateAllTimeScore(sortedAlluserScore);
     };
 
     useEffect(() => {
