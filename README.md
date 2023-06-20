@@ -7,6 +7,7 @@ trivia API를 활용한 간단한 퀴즈앱 입니다.
 - 4개 보기 중 항목 선택 후 답안이 맞았는지 확인 가능 
 - 퀴즈풀기 완료 후 경과 시간 및 정답 & 오답 확인 가능 
 - 정 오답에 대한 비율 차트로 확인 가능
+- zustand persist를 이용한 역대점수 랭킹 저장
 - AWS Amplify를 통해 정적 사이트 배포
 
 🏠 <a href=https://main.d3dku69za6fcxq.amplifyapp.com>웹 페이지</a>
@@ -40,7 +41,7 @@ trivia API를 활용한 간단한 퀴즈앱 입니다.
 │   ├── pages              // 페이지
 │   ├── utils              // 유틸리티 공통 함수 모음
 │   ├── App.tsx
-│   └── index.tsx 
+│   └── quizResultCard.tsx 
 ├── README.md
 ├── package.json           // npm 패키지 의존성 파일
 ├── .env                   // 환경변수 관리 파일

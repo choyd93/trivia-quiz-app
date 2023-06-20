@@ -5,6 +5,7 @@ import { useBoundStore } from '@modules/store';
 import { ButtonWrap, HomeButton } from '@pages/Quiz/styles';
 import { QuizResultWrap } from '@pages/Quiz/QuizResult/styles';
 import QuizResultCard from '@components/Card/quizResultCard';
+import AllTimeResultCard from '@components/Card/allTimeResultCard';
 
 interface QuizDetailResultProps {
     correctPoint: number;
@@ -49,6 +50,7 @@ const QuizDetailResult = ({
                 correctPoint={correctPoint}
                 inCorrectPoint={inCorrectPoint}
             />
+            <AllTimeResultCard />
             <ButtonWrap>
                 <a href="/">
                     <HomeButton>홈으로 돌아가기</HomeButton>

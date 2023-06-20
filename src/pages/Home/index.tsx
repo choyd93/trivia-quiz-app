@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { categories } from '@assets/data';
+
 import {
     ContentInput,
     EntranceButton,
@@ -7,16 +11,16 @@ import {
     QuizInputLabel,
     QuizSelectBox,
 } from '@pages/Home/styles';
-import { categories } from '@assets/data';
-import { useNavigate } from 'react-router-dom';
+import { useBoundStore } from '@modules/store';
 
 const Home = () => {
     const appName = 'Simple Quiz';
     const navigate = useNavigate();
 
+    const updateSelectInfo = useBoundStore(state => state.updateAllSelectInfo);
     const [mySelectQuizOption, setMySelectQuizOption] = useState({
         nickName: '',
-        amount: '10',
+        amount: 10,
         category: 'any',
         difficulty: 'any',
         type: 'any',
@@ -36,6 +40,15 @@ const Home = () => {
         if (mySelectQuizOption.nickName === '') {
             alert('닉네임 입력하세요');
         } else {
+            const { nickName, amount, category, difficulty, type } =
+                mySelectQuizOption;
+            updateSelectInfo(
+                nickName,
+                Number(amount),
+                category,
+                difficulty,
+                type,
+            );
             navigate('/quiz', {
                 state: { mySelectQuizOption },
             });

@@ -6,7 +6,7 @@ export const ContentWrap = styled.section`
     max-width: 54.5625rem;
     padding: 2.5rem;
     position: relative;
-    height: 1200px;
+    height: 100%;
 `;
 
 export const QuizContentsWrap = styled.section`
