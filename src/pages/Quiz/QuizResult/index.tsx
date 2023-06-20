@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 
 import { useBoundStore } from '@modules/store';
 
-import { ButtonWrap, HomeButton } from '@pages/Quiz/styles';
-import { QuizResultWrap } from '@pages/Quiz/QuizResult/styles';
 import QuizResultCard from '@components/Card/quizResultCard';
 import AllTimeResultCard from '@components/Card/allTimeResultCard';
+
 import { handleSortAllUserScore } from '@utils/utils';
+
+import { ButtonWrap, HomeButton } from '@pages/Quiz/styles';
+import { QuizResultWrap } from '@pages/Quiz/QuizResult/styles';
+import IncorrectAnswerNoteCard from '@components/Card/incorrectAnswerNoteCard';
 
 interface QuizDetailResultProps {
     correctPoint: number;
@@ -21,9 +24,18 @@ const QuizDetailResult = ({
     setIsRunning,
     myNickName,
 }: QuizDetailResultProps) => {
+    const {
+        nickName,
+        amount,
+        totalTime,
+        allTimeScore,
+        updateAllTimeScore,
+        currentQuizInfo,
+        // updateIsAgainQuiz,
+        resetCurrentQuizInfo,
+    } = useBoundStore();
     const [finalResultTime, setFinalResultTime] = useState('');
-    const { nickName, amount, totalTime, allTimeScore, updateAllTimeScore } =
-        useBoundStore();
+
     const inCorrectPoint = Number(amount) - correctPoint;
 
     /**
@@ -33,15 +45,20 @@ const QuizDetailResult = ({
         const arr = { nickName, amount, correctPoint, totalTime };
         const copyOldScore = [...allTimeScore];
         copyOldScore.push(arr);
-        const sortedAlluserScore = handleSortAllUserScore(copyOldScore);
+        const sortedAllUserScore = handleSortAllUserScore(copyOldScore);
 
-        updateAllTimeScore(sortedAlluserScore);
+        updateAllTimeScore(sortedAllUserScore);
     };
+
+    // const handleAgainQuiz = () => {
+    //     updateIsAgainQuiz(true);
+    // };
 
     useEffect(() => {
         setFinalResultTime(ResultTime);
         setIsRunning(false);
         handleSaveScore();
+        console.log('currentQuizInfo 11111111 : ', currentQuizInfo);
     }, []);
 
     return (
@@ -53,12 +70,22 @@ const QuizDetailResult = ({
                 correctPoint={correctPoint}
                 inCorrectPoint={inCorrectPoint}
             />
+            <IncorrectAnswerNoteCard />
             <AllTimeResultCard />
             <ButtonWrap>
                 <a href="/">
-                    <HomeButton>홈으로 돌아가기</HomeButton>
+                    <HomeButton onClick={() => resetCurrentQuizInfo()}>
+                        홈으로 돌아가기
+                    </HomeButton>
                 </a>
             </ButtonWrap>
+            {/*<ButtonWrap>*/}
+            {/*    <a href="quiz">*/}
+            {/*        <HomeButton onClick={() => handleAgainQuiz}>*/}
+            {/*            다시 풀기*/}
+            {/*        </HomeButton>*/}
+            {/*    </a>*/}
+            {/*</ButtonWrap>*/}
         </>
     );
 };

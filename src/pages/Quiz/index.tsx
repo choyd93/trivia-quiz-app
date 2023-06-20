@@ -10,17 +10,16 @@ import UseTimer from '@hooks/useTimer';
 import QuizDetailContainer from '@pages/Quiz/QuizDetail';
 import QuizDetailResult from '@pages/Quiz/QuizResult';
 
-import {
-    ButtonWrap,
-    ContentWrap,
-    HomeButton,
-    QuizContentCenterWrap,
-    QuizContentsWrap,
-} from '@pages/Quiz/styles';
+import { ContentWrap, QuizContentsWrap } from '@pages/Quiz/styles';
+import NotFound from '@components/NotFound';
 
 const Quiz = () => {
     const { state } = useLocation();
     const { nickName, amount, difficulty } = state.mySelectQuizOption;
+
+    // const { currentQuizInfo, isAgainQuiz, resetCurrentQuizInfo } = useBoundStore();
+
+    // const { resetCurrentQuizInfo } = useBoundStore();
 
     const { data, isLoading } = UseQuizQuery(state.mySelectQuizOption);
     const { formattedTime, setIsRunning } = UseTimer();
@@ -30,28 +29,17 @@ const Quiz = () => {
 
     const isQuizChpter = quizIndex >= 0 && quizIndex <= Number(amount) - 1;
 
+    console.log('data : ', data);
+    // console.log('isAgainQuiz 777; ', isAgainQuiz);
+    // console.log('currentQuizInfo 777; ', currentQuizInfo);
+
     return (
         <>
             <Header isLoading={isLoading} />
             {isLoading ? (
                 <Loading />
             ) : data?.results.length === 0 ? (
-                <QuizContentsWrap>
-                    <ContentWrap>
-                        <QuizContentCenterWrap>
-                            선택하신 문제 타입과 카테고리에 맞는 퀴즈가
-                            없습니다.
-                        </QuizContentCenterWrap>
-                        <QuizContentCenterWrap>
-                            (ture / false 타입을 선택하셨을 경우)
-                        </QuizContentCenterWrap>
-                        <ButtonWrap>
-                            <a href="/">
-                                <HomeButton>홈으로 돌아가기</HomeButton>
-                            </a>
-                        </ButtonWrap>
-                    </ContentWrap>
-                </QuizContentsWrap>
+                <NotFound />
             ) : (
                 <QuizContentsWrap>
                     <ContentWrap>

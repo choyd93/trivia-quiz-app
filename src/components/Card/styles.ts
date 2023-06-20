@@ -12,6 +12,14 @@ export const QuizResultCardWrap = styled.div`
     margin: 0 auto;
 `;
 
+export const IncorrectNoteCardWrap = styled(QuizResultCardWrap)`
+    flex-direction: column;
+`;
+
+export const IncorrectCardWrap = styled(QuizResultCardWrap)`
+    width: 100% !important;
+`;
+
 export const QuizResultText = styled.div`
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
@@ -46,6 +54,10 @@ export const TableTitle = styled.div`
     border-bottom: 1px solid darkgrey;
 `;
 
+export const IncorrectTableTitle = styled(TableTitle)`
+    width: 100% !important;
+`;
+
 export const TableContentWrap = styled.div`
     display: flex;
     flex-direction: column;
@@ -60,6 +72,10 @@ export const ContentTable = styled.div`
     flex: 1;
     text-align: center;
     padding-bottom: 0.8rem;
+`;
+
+export const ColorContentTable = styled(ContentTable)<{ isCorrect: boolean }>`
+    color: ${props => (props.isCorrect ? 'blue' : 'red')};
 `;
 
 export const ContentWrap = styled.div`

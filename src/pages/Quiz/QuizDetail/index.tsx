@@ -6,6 +6,7 @@ import {
 import { QuizResponse } from '@api/types';
 
 import QuizDetail from '@pages/Quiz/QuizDetail/detail';
+import { useBoundStore } from '@modules/store';
 
 interface QuizDetailContainerProps {
     data: QuizResponse;
@@ -13,7 +14,7 @@ interface QuizDetailContainerProps {
     setQuizIndex: React.Dispatch<React.SetStateAction<number>>;
     correctPoint: number;
     setCorrectPoint: React.Dispatch<React.SetStateAction<number>>;
-    amount: string;
+    amount: number;
     difficulty: string;
 }
 const QuizDetailContainer = ({
@@ -25,8 +26,10 @@ const QuizDetailContainer = ({
     amount,
     difficulty,
 }: QuizDetailContainerProps) => {
+    const { currentQuizInfo } = useBoundStore();
+
     const [selectedAnswer, setSelectedAnswer] = useState(-1);
-    const [correctAnswerIndex, setCorrectAnswerIndex] = useState(-1);
+    const [correctAnswerIndex, setCorrectAnswerIndex] = useState(-1); // 정답
     const [correctAnswerType, setCorrectAnswerType] = useState<
         'true' | 'false' | null
     >(null);
@@ -36,14 +39,30 @@ const QuizDetailContainer = ({
     };
 
     /**
+     * 'currentQuizInfo'에 내가 선택한 정답을 추가해주는 함수
+     */
+    const handleAddMyChoice = (
+        answerStatus: boolean,
+        mySelectedAnswer: number,
+    ) => {
+        const copiedArr = [...currentQuizInfo];
+        copiedArr[quizIndex].myChoiceStatus = answerStatus;
+        copiedArr[quizIndex].myChoiceIndex = mySelectedAnswer;
+    };
+
+    /**
      * 정답 확인 및 포인트 추가 함수
      */
     const handleCheckAnswer = () => {
-        if (selectedAnswer + 1 === correctAnswerIndex) {
+        const mySelectedAnswer = selectedAnswer + 1;
+
+        if (mySelectedAnswer === correctAnswerIndex) {
             setCorrectAnswerType('true');
+            handleAddMyChoice(true, mySelectedAnswer);
             setCorrectPoint(correctPoint + 1);
         } else {
             setCorrectAnswerType('false');
+            handleAddMyChoice(false, mySelectedAnswer);
         }
     };
 

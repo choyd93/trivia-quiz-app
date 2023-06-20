@@ -39,3 +39,26 @@ export interface ScoreState {
 }
 
 export type ScoreType = ScoreState & ScoreActions;
+
+export interface IncorrectNoteInfo {
+    quizIndex: number;
+    question: string;
+    questionOptions: string[];
+    myChoiceIndex: number | null; // 내가 선택한 정답의 index
+    myChoiceStatus: boolean | null; // 내가 선택한 정답의 상태 (정답/오답)
+
+    currentQuizCorrectAnswer: string; // 현재 퀴즈의 정답
+    currentQuizCorrectAnswerIndex: number; // 현재 퀴즈의 정답 index
+}
+
+export interface IncorrectNoteActions {
+    updateCurrentQuizInfo: (newQuizInfo: IncorrectNoteInfo[]) => void;
+    updateIsAgainQuiz: (newStatus: boolean) => void;
+    resetCurrentQuizInfo: () => void;
+}
+
+export interface IncorrectNoteState {
+    currentQuizInfo: IncorrectNoteInfo[];
+    isAgainQuiz: boolean;
+}
+export type IncorrectNoteType = IncorrectNoteState & IncorrectNoteActions;

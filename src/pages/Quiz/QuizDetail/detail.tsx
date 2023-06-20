@@ -8,6 +8,7 @@ import {
     QuizSubContents,
 } from '@pages/Quiz/QuizDetail/styles';
 import { QuizResponseResult } from '@api/types';
+import { useBoundStore } from '@modules/store';
 
 interface DetailProps {
     data: QuizResponseResult;
@@ -17,7 +18,7 @@ interface DetailProps {
     correctAnswerType: 'true' | 'false' | null;
     setCorrectAnswerIndex: React.Dispatch<React.SetStateAction<number>>;
     correctPoint: number;
-    amount: string;
+    amount: number;
     difficulty: string;
 }
 
@@ -36,6 +37,36 @@ const QuizDetail = ({
     const currentQuizIndex = quizIndex + 1;
     const [quizDetail, setQuizDetail] = useState<string[]>([]);
 
+    const { updateCurrentQuizInfo, currentQuizInfo } = useBoundStore();
+
+    /**
+     * 다시풀기 및 오답노트를 위한 설정 스토어 저장
+     * @param currentQuizNumber
+     * @param decodedQuiz
+     * @param correctAnswer
+     * @param correctAnswerIndex
+     */
+    const handleSetCurrentQuizInfo = (
+        currentQuizNumber: number,
+        decodedQuiz: string[],
+        correctAnswer: string,
+        correctAnswerIndex: number,
+    ) => {
+        const copiedArr = [...currentQuizInfo];
+        const temp = {
+            quizIndex: currentQuizNumber,
+            question: decodeURIComponent(question),
+            questionOptions: decodedQuiz,
+            myChoiceIndex: null,
+            myChoiceStatus: null,
+            currentQuizCorrectAnswer: correctAnswer,
+            currentQuizCorrectAnswerIndex: correctAnswerIndex,
+        };
+
+        copiedArr.push(temp);
+        updateCurrentQuizInfo(copiedArr);
+    };
+
     /**
      * correct_answer와 incorrect_answers 합친 후 정답 랜덤 변경 함수
      * @param oneQuiz
@@ -48,8 +79,17 @@ const QuizDetail = ({
         copiedQuiz.splice(randomIndex, 0, oneQuiz);
         const combinedQuiz = copiedQuiz.map(item => decodeURIComponent(item));
 
-        setCorrectAnswerIndex(randomIndex + 1);
+        const correctQuizAnswer = decodeURIComponent(oneQuiz);
 
+        const correctAnswerIndex = randomIndex + 1;
+        setCorrectAnswerIndex(correctAnswerIndex);
+
+        handleSetCurrentQuizInfo(
+            currentQuizIndex,
+            combinedQuiz,
+            correctQuizAnswer,
+            correctAnswerIndex,
+        );
         return { combinedQuiz };
     };
 
@@ -93,7 +133,7 @@ const QuizDetail = ({
             </QuizCategory>
             <QuizPointWrap>
                 <QuizSubContents>
-                    Question: {currentQuizIndex} / {amount}
+                    Question: {currentQuizIndex} / {String(amount)}
                 </QuizSubContents>
                 <QuizSubContents>{difficulty}</QuizSubContents>
             </QuizPointWrap>
