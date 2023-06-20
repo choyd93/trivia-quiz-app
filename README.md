@@ -16,6 +16,7 @@ trivia API를 활용한 간단한 퀴즈앱 입니다.
 - `TypeScript` : 정적 타입을 도입하여 코드 안전성 및 유지보수를 쉽게 하기위해 사용
 - `React`: 웹UI 라이브러리
 - `TanStack Query (구 React-Query) `: 데이터 패칭 라이브러리 
+- `zustand` : 상태관리 라이브러리
 - `Styled-components` : css-in-js을 통해 컴포넌트 스타일을 관리하기 위해 사용
 - `ESLint` : 코드의 컨벤션 검사를 위해 사용
 - `Pretiier` : 코드의 컨벤션 유지를 위해 사용
@@ -35,6 +36,7 @@ trivia API를 활용한 간단한 퀴즈앱 입니다.
 │   ├── assets             // 아이콘, data 및 글로벌 Style 
 │   ├── components         // 재사용 가능한 컴포넌트
 │   ├── hooks              // Custom Hooks
+│   ├── modules            // zustand store 및 slice
 │   ├── pages              // 페이지
 │   ├── utils              // 유틸리티 공통 함수 모음
 │   ├── App.tsx
