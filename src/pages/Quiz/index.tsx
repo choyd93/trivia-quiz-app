@@ -72,7 +72,6 @@ const Quiz = () => {
                                 ResultTime={formattedTime}
                                 setIsRunning={setIsRunning}
                                 myNickName={nickName}
-                                amount={amount}
                             />
                         )}
                     </ContentWrap>

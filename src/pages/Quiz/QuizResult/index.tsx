@@ -1,21 +1,16 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import {
-    QuizResultCard,
-    QuizResultContents,
-    QuizResultContentWrap,
-    QuizResultText,
-    QuizResultTextWrap,
-    QuizResultWrap,
-} from '@pages/Quiz/QuizResult/styles';
+import React, { useEffect, useState } from 'react';
+
+import { useBoundStore } from '@modules/store';
+
 import { ButtonWrap, HomeButton } from '@pages/Quiz/styles';
-import MyChart from '@components/Chart';
+import { QuizResultWrap } from '@pages/Quiz/QuizResult/styles';
+import QuizResultCard from '@components/Card/quizResultCard';
 
 interface QuizDetailResultProps {
     correctPoint: number;
     ResultTime: string;
     setIsRunning: React.Dispatch<React.SetStateAction<boolean>>;
     myNickName: string;
-    amount: string;
 }
 
 const QuizDetailResult = ({
@@ -23,57 +18,37 @@ const QuizDetailResult = ({
     ResultTime,
     setIsRunning,
     myNickName,
-    amount,
 }: QuizDetailResultProps) => {
     const [finalResultTime, setFinalResultTime] = useState('');
+    const { nickName, amount, totalTime, allTimeScore, updateAllTimeScore } =
+        useBoundStore();
     const inCorrectPoint = Number(amount) - correctPoint;
 
-    const handleSetChart = (correct: number, inCorrect: number) => {
-        const result = [
-            {
-                id: '정답 수',
-                label: '정답 수',
-                value: Number(correct),
-                color: 'hsl(195, 70%, 50%)',
-            },
-            {
-                id: '오답 수',
-                label: '오답 수',
-                value: Number(inCorrect),
-                color: 'hsl(301, 70%, 50%)',
-            },
-        ];
-        return result;
+    /**
+     * 역대 점수 정보 추가 함수
+     */
+    const handleSaveScore = () => {
+        const arr = { nickName, amount, correctPoint, totalTime };
+        const copyOldScore = [...allTimeScore];
+        copyOldScore.push(arr);
+        updateAllTimeScore(copyOldScore);
     };
-
-    const chartResult = useMemo(
-        () => handleSetChart(correctPoint, inCorrectPoint),
-        [correctPoint],
-    );
 
     useEffect(() => {
         setFinalResultTime(ResultTime);
         setIsRunning(false);
+        handleSaveScore();
     }, []);
 
     return (
         <>
             <QuizResultWrap>{`${myNickName}님의 결과`}</QuizResultWrap>
-            <QuizResultCard>
-                <QuizResultContentWrap>
-                    <QuizResultContents>
-                        <QuizResultTextWrap>
-                            <QuizResultText>{`경과 시간 : ${finalResultTime}`}</QuizResultText>
-                            <QuizResultText>{`문제 수 : ${amount}`}</QuizResultText>
-                            <QuizResultText>{`정답 수 : ${correctPoint}`}</QuizResultText>
-                            <QuizResultText>{`오답 수 : ${inCorrectPoint}`}</QuizResultText>
-                        </QuizResultTextWrap>
-                    </QuizResultContents>
-                    <QuizResultContents>
-                        <MyChart data={chartResult} />
-                    </QuizResultContents>
-                </QuizResultContentWrap>
-            </QuizResultCard>
+            <QuizResultCard
+                finalResultTime={finalResultTime}
+                amount={amount}
+                correctPoint={correctPoint}
+                inCorrectPoint={inCorrectPoint}
+            />
             <ButtonWrap>
                 <a href="/">
                     <HomeButton>홈으로 돌아가기</HomeButton>

@@ -40,6 +40,9 @@ export const GitPageButton = styled.a`
     display: inline-block;
     height: 36px;
     line-height: 39px;
+    &:hover {
+        background-color: #2bbbad;
+    }
 `;
 
 export const IconWrap = styled.div`
