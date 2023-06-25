@@ -17,10 +17,6 @@ const Quiz = () => {
     const { state } = useLocation();
     const { nickName, amount, difficulty } = state.mySelectQuizOption;
 
-    // const { currentQuizInfo, isAgainQuiz, resetCurrentQuizInfo } = useBoundStore();
-
-    // const { resetCurrentQuizInfo } = useBoundStore();
-
     const { data, isLoading } = UseQuizQuery(state.mySelectQuizOption);
     const { formattedTime, setIsRunning } = UseTimer();
 
@@ -28,10 +24,6 @@ const Quiz = () => {
     const [correctPoint, setCorrectPoint] = useState(0);
 
     const isQuizChpter = quizIndex >= 0 && quizIndex <= Number(amount) - 1;
-
-    console.log('data : ', data);
-    // console.log('isAgainQuiz 777; ', isAgainQuiz);
-    // console.log('currentQuizInfo 777; ', currentQuizInfo);
 
     return (
         <>

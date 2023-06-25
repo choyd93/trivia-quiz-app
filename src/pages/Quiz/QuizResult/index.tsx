@@ -30,8 +30,6 @@ const QuizDetailResult = ({
         totalTime,
         allTimeScore,
         updateAllTimeScore,
-        currentQuizInfo,
-        // updateIsAgainQuiz,
         resetCurrentQuizInfo,
     } = useBoundStore();
     const [finalResultTime, setFinalResultTime] = useState('');
@@ -50,15 +48,10 @@ const QuizDetailResult = ({
         updateAllTimeScore(sortedAllUserScore);
     };
 
-    // const handleAgainQuiz = () => {
-    //     updateIsAgainQuiz(true);
-    // };
-
     useEffect(() => {
         setFinalResultTime(ResultTime);
         setIsRunning(false);
         handleSaveScore();
-        console.log('currentQuizInfo 11111111 : ', currentQuizInfo);
     }, []);
 
     return (
