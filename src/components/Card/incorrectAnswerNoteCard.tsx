@@ -33,7 +33,7 @@ const IncorrectAnswerNoteCard = () => {
                             </ContentTable>
                             <ContentTable>{item.myChoiceIndex}</ContentTable>
                             <ColorContentTable
-                                isCorrect={item.myChoiceStatus !== null}
+                                isCorrect={item.myChoiceStatus !== null && item.myChoiceStatus}
                             >
                                 {item.myChoiceStatus ? '정답' : '오답'}
                             </ColorContentTable>
