@@ -1,7 +1,8 @@
 # simple-quiz-app
 심플 퀴즈 앱
 
-6/14 ~ 6/20 (작업 총 5일)
+![퀴즈 어플 상세](https://github.com/choyd93/trivia-quiz-app/assets/69706762/baf434e7-aeda-4b52-8287-cbfb7387061f)
+
 
 ## 1. 프로젝트 소개
 trivia API를 활용한 간단한 퀴즈앱 입니다.
