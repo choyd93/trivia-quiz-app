@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
     NextQuizButton,
-    NextQuizButtonWrap,
+    NextQuizButtonWrap, QuizWrap
 } from '@pages/Quiz/QuizDetail/styles';
 import { QuizResponse } from '@api/types';
 
@@ -17,6 +17,8 @@ interface QuizDetailContainerProps {
     amount: number;
     difficulty: string;
 }
+
+
 const QuizDetailContainer = ({
     data,
     quizIndex,
@@ -79,7 +81,7 @@ const QuizDetailContainer = ({
 
     return (
         isQuiz && (
-            <>
+            <QuizWrap>
                 <QuizDetail
                     data={data.results[quizIndex]}
                     quizIndex={quizIndex}
@@ -109,7 +111,7 @@ const QuizDetailContainer = ({
                         </NextQuizButton>
                     </NextQuizButtonWrap>
                 )}
-            </>
+            </QuizWrap>
         )
     );
 };

@@ -5,8 +5,9 @@ export const ContentWrap = styled.section`
     margin: 0 auto;
     max-width: 54.5625rem;
     padding: 2.5rem;
-    position: relative;
-    height: 100vh;`;
+    //position: relative;
+    //height: 100vh;
+`;
 
 export const QuizContentsWrap = styled.section`
     background-color: #f6f7fb;

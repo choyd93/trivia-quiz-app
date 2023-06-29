@@ -88,3 +88,7 @@ export const NextQuizButtonWrap = styled.div`
     justify-content: center;
     margin-top: 1rem;
 `;
+
+export const QuizWrap = styled.div`
+    height: 100vh;
+`
